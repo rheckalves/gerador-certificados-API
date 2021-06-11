@@ -9,9 +9,11 @@ const retornaCertificadoController = async (req, res, next) => {
         const browser = await puppeteer.launch({
             args: ['--no-sandbox', '--disable-setuid-sandbox'],
         });
+        const url = `${HOSTNAME}:${PORT}/certificado`;
         const page = await browser.newPage();
         await page.setViewport({ width: 1920, height: 1080, isLandscape: true });
-        await page.goto(`${HOSTNAME}:${PORT}/certificado`, {waitUntil: 'networkidle0'});
+        await page.goto(url);
+        console.log(url);
         const buffer = await page.pdf({ format: 'A4', printBackground: true, landscape: true });
         res.type('application/pdf');
         res.send(buffer);
