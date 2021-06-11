@@ -10,10 +10,10 @@ const retornaCertificadoController = async (req, res, next) => {
             args: ['--no-sandbox', '--disable-setuid-sandbox'],
         });
         const url = `${HOSTNAME}:${PORT}/certificado`;
+        console.log(url);
         const page = await browser.newPage();
         await page.setViewport({ width: 1920, height: 1080, isLandscape: true });
         await page.goto(url);
-        console.log(url);
         const buffer = await page.pdf({ format: 'A4', printBackground: true, landscape: true });
         res.type('application/pdf');
         res.send(buffer);
