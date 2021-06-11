@@ -9,7 +9,7 @@ const retornaCertificadoController = async (req, res, next) => {
         const browser = await puppeteer.launch({
             args: ['--no-sandbox', '--disable-setuid-sandbox'],
         });
-        const url = `${HOSTNAME}:${PORT}/certificado`;
+        const url = `${HOSTNAME}/certificado`;
         console.log(url);
         const page = await browser.newPage();
         await page.setViewport({ width: 1920, height: 1080, isLandscape: true });
